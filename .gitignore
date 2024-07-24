@@ -6,7 +6,6 @@
 /public/vendor/telescope
 /storage/*.key
 /vendor
-/storage
 /storage/logs/*
 /storage/framework/*
 /storage/framework/cache/*
