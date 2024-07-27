@@ -46,46 +46,46 @@
                   >
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ i + 1 }}
                     </th>
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ user.created_at }}
                     </th>
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ user.name }}
                     </th>
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ user.email }}
                     </th>
 
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ user.referral_code }}
                     </th>
 
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ user.refer_by }}
                     </th>
 
                     <td
                       scope="row"
-                      class="px-6 f py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex"
+                      class="px-6 f py-4 font-medium text-gray-900 whitespace-nowrap flex"
                     >
                       <Link :href="route('user.qrcode',{ userid: user.id })"
                     class="p-1.5 rounded border hover:bg-gray-100"
@@ -113,7 +113,7 @@
                     </td>
 
                     <td
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       <button
                         @click="deleteRecord(user.id)"

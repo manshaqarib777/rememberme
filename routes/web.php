@@ -11,9 +11,7 @@ use App\Http\Controllers\QrcodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PassedawayController;
 use App\Http\Controllers\UserQrcodeController;
-
-
-
+use Illuminate\Support\Facades\Redirect;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -33,12 +31,10 @@ Route::get('/', function () {
         if ($UserQrcode) {
             $profile = Passedaway::where('user_id', $UserQrcode->user_id)->first();
             return Inertia::render('Site/Home', compact('profile'));
-        }else{
-            return Inertia::render('Site/Home', compact('profile'));
         }
 
     }
-    return Inertia::render('Site/Home', compact('profile'));
+    return Redirect::route('remember-me');
 })->name('home');
 ;
 Route::middleware('auth')->group(function () {
@@ -54,7 +50,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('remember-me', [PassedawayController::class, 'index']);
+    Route::get('remember-me', [PassedawayController::class, 'index'])->name('remember-me');
     Route::post('remember-me/add', [PassedawayController::class, 'store'])->name('passedaway.profile.store');
 
 

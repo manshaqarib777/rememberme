@@ -31,14 +31,14 @@
                 <div class="w- ml-3 mr-3">
                   <label
                     for="qrcode"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="block mb-2 text-sm font-medium text-gray-900 "
                   >
                     Select a QR code
                   </label>
                   <select
                     v-model="form.qrcode_id"
                     id="qrcode"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option disabled value="">Choose a QR code</option>
                     <option
@@ -105,27 +105,27 @@
                     >
                       <th
                         scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                       >
                         {{ i + 1 }}
                       </th>
                       <th
                         scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                       >
                         {{ qrcode.created_at }}
                       </th>
 
                       <th
                         scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                       >
                         {{ qrcode.qrcode.reference }}
                       </th>
 
 
                       <td
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                       >
                         <button
                           @click="deleteRecord(qrcode.id)"

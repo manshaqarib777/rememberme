@@ -20,6 +20,7 @@
     "dependencies": {
         "html2canvas": "^1.4.1",
         "nprogress": "^0.2.0",
+        "vue3-qrcode-reader": "^0.0.1",
         "vuetify": "^3.5.3"
     }
 }

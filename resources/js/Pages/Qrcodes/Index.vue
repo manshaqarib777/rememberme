@@ -9,13 +9,8 @@
     </template>
 
     <div class="py-3">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <Link
-          :href="route('qrcodes.create')"
-          class="text-white bg-blue-700 mt-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Add Qrcode
-        </Link>
+        <div class="max-fw-7xl mx-auto sm:px-6 lg:px-8">
+
 
         <Snackbar :snackbar="snackbar" :text="text" />
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-3">
@@ -26,7 +21,16 @@
             >
               {{ $page.props.flash.success }}
             </div>
-            <div class="text-2xl font-bold">Qrcodes</div>
+            <div class="flex justify-between align-middle mb-3">
+                <div class="text-2xl font-bold">Qrcodes</div>
+                <Link
+                    :href="route('qrcodes.create')"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                    Add Qrcode
+                </Link>
+            </div>
+
 
             <div class=" overflow -auto">
               <table
@@ -51,20 +55,20 @@
                   >
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ i + 1 }}
                     </th>
 
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ qrcode.url }}
                     </th>
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                     >
                       {{ qrcode.reference }}
                     </th>
