@@ -46,7 +46,7 @@ class PassedawayController extends Controller
 
         if ($request->hasFile('profile_picture')) {
             $profile_picture = $request->file('profile_picture');
-            $fileName = time() . '_' . preg_replace('/\s+/', '_', $cover_photo->getClientOriginalName());
+            $fileName = time() . '_' . preg_replace('/\s+/', '_', $profile_picture->getClientOriginalName());
             $profile_picture->move(public_path('profilepictures'), $fileName);
             $data['profile_picture'] = "profilepictures/".$fileName;
         }
@@ -62,7 +62,7 @@ class PassedawayController extends Controller
             $images = [];
             foreach ($request->file('images') as $file) {
                 // Store images in the public/images folder
-                $fileName = time() . '_' . preg_replace('/\s+/', '_', $cover_photo->getClientOriginalName());
+                $fileName = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
                 $file->move(public_path('images'), $fileName);
                 $images[] = "images/".$fileName;
             }
