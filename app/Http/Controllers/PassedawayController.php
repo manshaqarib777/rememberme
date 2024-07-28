@@ -38,22 +38,22 @@ class PassedawayController extends Controller
         ];
 
         // Handle profile picture upload
-        if ($request->hasFile('profile_picture')) {
-            $data['profile_picture'] = $request->file('profile_picture')->store('profile_pictures');
-        }
+        // if ($request->hasFile('profile_picture')) {
+        //     $data['profile_picture'] = $request->file('profile_picture')->store('profile_pictures');
+        // }
 
 
 
         if ($request->hasFile('profile_picture')) {
             $profile_picture = $request->file('profile_picture');
-            $fileName = time() . '_' . $profile_picture->getClientOriginalName();
+            $fileName = time() . '_' . preg_replace('/\s+/', '_', $cover_photo->getClientOriginalName());
             $profile_picture->move(public_path('profilepictures'), $fileName);
             $data['profile_picture'] = "profilepictures/".$fileName;
         }
 
         if ($request->hasFile('cover_photo')) {
             $cover_photo = $request->file('cover_photo');
-            $fileName = time() . '_' . $cover_photo->getClientOriginalName();
+            $fileName = time() . '_' . preg_replace('/\s+/', '_', $cover_photo->getClientOriginalName());
             $cover_photo->move(public_path('coverphoto'), $fileName);
             $data['cover_photo'] = "coverphoto/".$fileName;
         }
@@ -62,7 +62,7 @@ class PassedawayController extends Controller
             $images = [];
             foreach ($request->file('images') as $file) {
                 // Store images in the public/images folder
-                $fileName = time() . '_' . $file->getClientOriginalName();
+                $fileName = time() . '_' . preg_replace('/\s+/', '_', $cover_photo->getClientOriginalName());
                 $file->move(public_path('images'), $fileName);
                 $images[] = "images/".$fileName;
             }
