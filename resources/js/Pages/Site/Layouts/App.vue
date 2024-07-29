@@ -1,89 +1,93 @@
 <template>
     <v-layout>
 
-      <div id="header-mobile" class="navbar-light fixed-top header-static bg-mode d-block d-md-none">
-           <div id="mobile-header-navbar">
-              <!-- Logo Nav START -->
-              <nav class="navbar py-2 container justify-content-center">
-                 <div id="user-options-modal-container">
-                    <!-- Button trigger modal -->
-                    <div type="button" class="d-flex flex-row justify-content-center flex-nowrap gap-1" data-bs-toggle="modal" data-bs-target="#user-options-modal">
-                       <!-- Logo START -->
-                       <div class="navbar-brand-logo">
-                          <img class="light-mode-item navbar-brand-item" :src="logoUrl" />
-                          <img class="dark-mode-item navbar-brand-item" :src="logoUrl" />
-                       </div>
-                       <!-- Logo END -->
-                       <div  id="btn-open-user-options-modal" class="btn-svg-icon">
-                          <svg class="down-dropdown" width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                             <path d="M0.857178 1.59998L11.4 12.1428C11.477 12.2248 11.5699 12.2902 11.6731 12.3349C11.7763 12.3795 11.8876 12.4026 12 12.4026C12.1125 12.4026 12.2237 12.3795 12.3269 12.3349C12.4301 12.2902 12.5231 12.2248 12.6 12.1428L23.1429 1.59998" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                       </div>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade bottom" id="user-options-modal" tabindex="-1" aria-labelledby="user-options-modalLabel" aria-hidden="true">
-                       <div class="modal-dialog modal-fullscreen">
-                          <div class="modal-content">
-                             <div class="modal-header container justify-content-end">
-                                <button type="button" id="close-user-options-modal" class="btn btn-unstyled" data-bs-dismiss="modal" aria-label="Close">
-                                   <svg class="up-dropdown" width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M23.1428 12.4L12.6 1.85717C12.523 1.77517 12.4301 1.70982 12.3269 1.66514C12.2237 1.62047 12.1124 1.59742 12 1.59742C11.8875 1.59742 11.7763 1.62047 11.6731 1.66514C11.5699 1.70982 11.4769 1.77517 11.4 1.85717L0.857108 12.4" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
-                                   </svg>
-                                </button>
-                             </div>
-                             <div class="modal-body" v-if="$page.props.auth.user">
-                                <a :href="route('customer.profile')">
-                                   <div class="d-flex flex-column justify-content-center align-items-center gap-3 avatar-name-container mb-4">
-                                      <!-- Avatar -->
-                                      <div class="avatar-on-mobile-modal">
-                                         <div class='user_avatar_wrapper_sm' style=''><img style="" :src="profileUrl" /></div>
-                                      </div>
-                                      <div class="h5 text-capitalize text-center">{{ $page.props.auth.user.name }}</div>
-                                   </div>
-                                </a>
-                                <ul class="ms-sm-3 list-unstyled">
-                                    <li class="dropdown-divider-gray"></li>
-                                    <li>
-                                        <DropdownLink
-                                            :href="route('profile.edit')"
-                                            as="a"
-                                            class="dropdown-item bg-danger-soft-hover mobile-menu-item reset-active-link-color"
-                                        >
-                                            <svg class="desktop-menu-item-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z" fill="#272727"/>
-                                        </svg>
-                                        <span class="desktop-menu-item ms-2">My Account</span>
-                                        </DropdownLink>
-                                    </li>
-                                    <li>
-                                        <li class="dropdown-divider-gray"></li>
-                                    </li>
-                                    <li>
+              <div id="header-mobile" class="navbar-light fixed-top header-static bg-mode d-block d-md-none">
+         <div id="mobile-header-navbar">
+            <!-- Logo Nav START -->
+            <nav class="navbar py-2 container justify-content-center">
+               <div id="user-options-modal-container">
+                  <!-- Button trigger modal -->
+                  <div type="button" class="d-flex flex-row justify-content-center flex-nowrap gap-1" data-bs-toggle="modal" data-bs-target="#user-options-modal">
+                     <!-- Logo START -->
+                     <div class="navbar-brand-logo">
+                        <img class="light-mode-item navbar-brand-item" src="https://app.turninghearts.com/assets/TurningHearts-logo-df086be0f775c0e4f03e0e31c1eff102f70547ba94e699f513b644df5240c80d.png" />
+                        <img class="dark-mode-item navbar-brand-item" src="https://app.turninghearts.com/assets/TurningHearts-logo-df086be0f775c0e4f03e0e31c1eff102f70547ba94e699f513b644df5240c80d.png" />
+                     </div>
+                     <!-- Logo END -->
+                     <div  id="btn-open-user-options-modal" class="btn-svg-icon" v-if="$page.props.auth.user">
+                        <svg class="down-dropdown" width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M0.857178 1.59998L11.4 12.1428C11.477 12.2248 11.5699 12.2902 11.6731 12.3349C11.7763 12.3795 11.8876 12.4026 12 12.4026C12.1125 12.4026 12.2237 12.3795 12.3269 12.3349C12.4301 12.2902 12.5231 12.2248 12.6 12.1428L23.1429 1.59998" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                     </div>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade bottom" id="user-options-modal" tabindex="-1" aria-labelledby="user-options-modalLabel" aria-hidden="true" v-if="$page.props.auth.user">
+                     <div class="modal-dialog modal-fullscreen">
+                        <div class="modal-content">
+                           <div class="modal-header container justify-content-end">
+                              <button type="button" id="close-user-options-modal" class="btn btn-unstyled" data-bs-dismiss="modal" aria-label="Close">
+                                 <svg class="up-dropdown" width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.1428 12.4L12.6 1.85717C12.523 1.77517 12.4301 1.70982 12.3269 1.66514C12.2237 1.62047 12.1124 1.59742 12 1.59742C11.8875 1.59742 11.7763 1.62047 11.6731 1.66514C11.5699 1.70982 11.4769 1.77517 11.4 1.85717L0.857108 12.4" stroke="black" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round"/>
+                                 </svg>
+                              </button>
+                           </div>
+                           <div class="modal-body">
+                              <a href='/profile'>
+                                 <div class="d-flex flex-column justify-content-center align-items-center gap-3 avatar-name-container mb-4">
+                                    <!-- Avatar -->
+                                    <div class="avatar-on-mobile-modal">
+                                       <div class='user_avatar_wrapper_sm' style=''><img style="" :src="profileUrl" /></div>
+                                    </div>
+                                    <div class="h5 text-capitalize text-center">{{ $page.props.auth.user.name }}</div>
+                                 </div>
+                              </a>
+                              <ul class="ms-sm-3 list-unstyled">
+
+                                <li>
+                                    <hr class="dropdown-divider-gray">
+                                </li>
+                                <li>
                                     <DropdownLink
-                                        :href="route('logout')"
-                                        method="post"
+                                        :href="route('profile.edit')"
                                         as="a"
-                                        class="dropdown-item bg-danger-soft-hover mobile-menu-item reset-active-link-color"
-                                        >
-                                        <svg class="desktop-menu-item-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M15 4L13.59 5.41L16.17 8H6V10H16.17L13.59 12.58L15 14L20 9L15 4ZM2 2H10V0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H10V16H2V2Z" fill="#272727"/>
-                                        </svg>
-                                        Log Out
+                                        class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
+                                    >
+                                        <svg class="desktop-menu-item-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z" fill="#272727"/>
+                                    </svg>
+                                    <span class="desktop-menu-item ms-2"> My Account</span>
                                     </DropdownLink>
-                                    </li>
-                                   <li>
-                                      <hr class="dropdown-divider-gray">
-                                   </li>
-                                </ul>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </nav>
-              <!-- Logo Nav END -->
-           </div>
-        </div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider-gray">
+                                </li>
+                                <li>
+                                <DropdownLink
+                                    :href="route('logout')"
+                                    method="post"
+                                    as="a"
+                                    class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
+                                    >
+                                    <svg class="desktop-menu-item-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 4L13.59 5.41L16.17 8H6V10H16.17L13.59 12.58L15 14L20 9L15 4ZM2 2H10V0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H10V16H2V2Z" fill="#272727"/>
+                                    </svg>
+                                    <span class="desktop-menu-item ms-2"> Log Out</span>
+
+                                </DropdownLink>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider-gray">
+                                </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </nav>
+            <!-- Logo Nav END -->
+         </div>
+      </div>
         <header id="desktop-header" class="navbar-light fixed-top header-static bg-mode d-none d-md-block">
            <div id="desktop-header-navbar">
               <!-- Logo Nav START -->
@@ -179,12 +183,12 @@
                                 <DropdownLink
                                     :href="route('profile.edit')"
                                     as="a"
-                                    class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color"
+                                    class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                 >
                                     <svg class="desktop-menu-item-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z" fill="#272727"/>
                                    </svg>
-                                   <span class="desktop-menu-item ms-2">My Account</span>
+                                   <span class="desktop-menu-item ms-2"> My Account</span>
                                 </DropdownLink>
                              </li>
                              <li>
@@ -195,12 +199,13 @@
                                 :href="route('logout')"
                                 method="post"
                                 as="a"
-                                class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color"
+                                class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                 >
                                 <svg class="desktop-menu-item-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 4L13.59 5.41L16.17 8H6V10H16.17L13.59 12.58L15 14L20 9L15 4ZM2 2H10V0H2C0.9 0 0 0.9 0 2V16C0 17.1 0.9 18 2 18H10V16H2V2Z" fill="#272727"/>
                                 </svg>
-                                Log Out
+                                <span class="desktop-menu-item ms-2"> Log Out</span>
+
                             </DropdownLink>
                             </li>
                              <li>

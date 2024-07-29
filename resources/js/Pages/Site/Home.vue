@@ -82,10 +82,20 @@
                                                     <h3
                                                         class="profile-name-text"
                                                     >
-                                                        {{ fullName }}
+                                                    {{ profile ? profile.title : "" }}. {{ fullName }}
                                                     </h3>
                                                     <!-- End of name container -->
                                                     <!-- Lifetime container -->
+                                                    <div class="my-2 px-0">
+                                                        <span
+                                                            class="profile-lifetime-text"
+                                                            >Relationship:
+                                                        </span>
+                                                        <span
+                                                            class="profile-date-text"
+                                                            >{{ profile ? profile.relationship : "" }}</span
+                                                        >
+                                                    </div>
                                                     <div class="my-2 px-0">
                                                         <span
                                                             class="profile-lifetime-text"
