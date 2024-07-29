@@ -13,8 +13,12 @@ class PassedawayController extends Controller
     public function index()
     {
         $Passedaway = Passedaway::where('user_id', auth()->user()->id)->first(); // Assuming there is only one Passedaway or adjust as per your application logic
+
+        $profile = $Passedaway->toArray();
+        $profile['birth_date'] = $Passedaway->getAttributes()['birth_date'];
+        $profile['death_date'] = $Passedaway->getAttributes()['death_date'];
         return Inertia::render('Site/PasswayProfile', [
-            'profile' => $Passedaway
+            'profile' => $profile
         ]);
     }
 
