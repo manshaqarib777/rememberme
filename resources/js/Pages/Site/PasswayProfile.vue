@@ -1,7 +1,7 @@
 <template>
   <Head title="Passedaway Profile"></Head>
   <App>
-    <h1 class="text-[30px] font-bold text-center">Passed Away Profile</h1>
+    <h1 class="text-[30px] font-bold text-center">Rememberme Profile</h1>
 
     <v-card class="mt-5">
       <v-container>

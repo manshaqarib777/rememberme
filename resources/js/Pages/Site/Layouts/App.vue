@@ -10,8 +10,8 @@
                   <div type="button" class="d-flex flex-row justify-content-center flex-nowrap gap-1" data-bs-toggle="modal" data-bs-target="#user-options-modal">
                      <!-- Logo START -->
                      <div class="navbar-brand-logo">
-                        <img class="light-mode-item navbar-brand-item" src="https://app.turninghearts.com/assets/TurningHearts-logo-df086be0f775c0e4f03e0e31c1eff102f70547ba94e699f513b644df5240c80d.png" />
-                        <img class="dark-mode-item navbar-brand-item" src="https://app.turninghearts.com/assets/TurningHearts-logo-df086be0f775c0e4f03e0e31c1eff102f70547ba94e699f513b644df5240c80d.png" />
+                        <img class="light-mode-item navbar-brand-item" :src="logoUrl" />
+                        <img class="dark-mode-item navbar-brand-item" :src="logoUrl" />
                      </div>
                      <!-- Logo END -->
                      <div  id="btn-open-user-options-modal" class="btn-svg-icon" v-if="$page.props.auth.user">
@@ -32,7 +32,7 @@
                               </button>
                            </div>
                            <div class="modal-body">
-                              <a href='/profile'>
+                              <a :href="route('customer.profile')">
                                  <div class="d-flex flex-column justify-content-center align-items-center gap-3 avatar-name-container mb-4">
                                     <!-- Avatar -->
                                     <div class="avatar-on-mobile-modal">
@@ -48,7 +48,7 @@
                                 </li>
                                 <li>
                                     <DropdownLink
-                                        :href="route('profile.edit')"
+                                        :href="route('customer.profile')"
                                         as="a"
                                         class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                     >
@@ -56,6 +56,23 @@
                                         <path d="M8 8C10.21 8 12 6.21 12 4C12 1.79 10.21 0 8 0C5.79 0 4 1.79 4 4C4 6.21 5.79 8 8 8ZM8 10C5.33 10 0 11.34 0 14V16H16V14C16 11.34 10.67 10 8 10Z" fill="#272727"/>
                                     </svg>
                                     <span class="desktop-menu-item ms-2"> My Account</span>
+                                    </DropdownLink>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider-gray">
+                                </li>
+                                <li>
+                                    <DropdownLink
+                                        :href="route('remember-me')"
+                                        as="a"
+                                        class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
+                                    >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="1" y="1" width="22" height="22" rx="4" stroke="#000" stroke-width="2" />
+                                        <path d="M4 12L10 18L20 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+
+                                    <span class="desktop-menu-item ms-2"> Remember Profile</span>
                                     </DropdownLink>
                                 </li>
                                 <li>
@@ -181,7 +198,7 @@
                              </li>
                              <li>
                                 <DropdownLink
-                                    :href="route('profile.edit')"
+                                    :href="route('customer.profile')"
                                     as="a"
                                     class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                 >
@@ -194,6 +211,22 @@
                              <li>
                                 <hr class="dropdown-divider">
                              </li>
+                             <li>
+                                <DropdownLink
+                                    :href="route('remember-me')"
+                                    as="a"
+                                    class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
+                                >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="1" y="1" width="22" height="22" rx="4" stroke="#000" stroke-width="2" />
+                                    <path d="M4 12L10 18L20 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span class="desktop-menu-item ms-2"> Remember Profile</span>
+                                </DropdownLink>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                              <li>
                              <DropdownLink
                                 :href="route('logout')"
