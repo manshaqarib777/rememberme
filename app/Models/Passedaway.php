@@ -20,4 +20,19 @@ class Passedaway extends Model
     {
         return Carbon::parse($value)->format('d/m/Y');
     }
+
+    // Define the relationship
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function qrcode()
+    {
+        return $this->hasOne(UserQrcode::class, 'user_id', 'user_id');
+    }
 }

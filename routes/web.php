@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Redirect;
 //     ]);
 // });
 
+Route::get('storage/image/{filename}', function ($filename) {
+    return url($filename);
+})->name('img_file')->where('filename', '.+');
 
 Route::get('/', function () {
     $profile = null;
@@ -29,12 +32,12 @@ Route::get('/', function () {
         $qrcode = Qrcode::where('reference', $_GET['reference'])->first();
         $UserQrcode = UserQrcode::where('qrcode_id', $qrcode->id)->first();
         if ($UserQrcode) {
-            $profile = Passedaway::where('user_id', $UserQrcode->user_id)->first();
+            $profile = Passedaway::with("media")->where('user_id', $UserQrcode->user_id)->first();
             return Inertia::render('Site/Home', compact('profile'));
         }
 
     }
-    return Redirect::route('remember-me');
+    return Redirect::route('passedaway.profile.bio');
 })->name('home');
 ;
 Route::middleware('auth')->group(function () {
@@ -50,8 +53,16 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('remember-me', [PassedawayController::class, 'index'])->name('remember-me');
-    Route::post('remember-me/add', [PassedawayController::class, 'store'])->name('passedaway.profile.store');
+    Route::get('profile/bio', [PassedawayController::class, 'index'])->name('passedaway.profile.bio');
+    Route::post('profile/bio/store', [PassedawayController::class, 'store'])->name('passedaway.profile.store');
+
+    Route::get('profile/media', [PassedawayController::class, 'media'])->name('passedaway.profile.media');
+    Route::post('profile/media/store', [PassedawayController::class, 'storeMedia'])->name('passedaway.profile.storeMedia');
+    Route::get('profile/media/{media}', [PassedawayController::class, 'getMedia'])->name('passedaway.profile.getMedia');
+    Route::delete('profile/media/{media}', [PassedawayController::class, 'deleteMedia'])->name('passedaway.profile.deleteMedia');
+
+    Route::post('profile/bio/upload-profile-photo', [PassedawayController::class, 'uploadProfilePhoto'])->name('passedaway.profile.upload-profile-photo');
+    Route::post('profile/bio/upload-cover-photo', [PassedawayController::class, 'uploadCoverPhoto'])->name('passedaway.profile.upload-cover-photo');
 
 
     Route::post('/profile/update', [ProfileController::class, 'update_customer_profile'])->name('customer.profile.update');

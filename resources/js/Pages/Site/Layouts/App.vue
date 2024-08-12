@@ -63,7 +63,7 @@
                                 </li>
                                 <li>
                                     <DropdownLink
-                                        :href="route('remember-me')"
+                                        :href="route('passedaway.profile.bio')"
                                         as="a"
                                         class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                     >
@@ -82,7 +82,7 @@
                                 <DropdownLink
                                     :href="route('logout')"
                                     method="post"
-                                    as="a"
+                                    as="button"
                                     class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                     >
                                     <svg class="desktop-menu-item-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +213,7 @@
                              </li>
                              <li>
                                 <DropdownLink
-                                    :href="route('remember-me')"
+                                    :href="route('passedaway.profile.bio')"
                                     as="a"
                                     class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                 >
@@ -231,7 +231,7 @@
                              <DropdownLink
                                 :href="route('logout')"
                                 method="post"
-                                as="a"
+                                as="button"
                                 class="dropdown-item bg-danger-soft-hover desktop-menu-item reset-active-link-color d-flex"
                                 >
                                 <svg class="desktop-menu-item-icon" width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
