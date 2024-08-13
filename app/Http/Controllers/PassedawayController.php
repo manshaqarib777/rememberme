@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Media;
 use App\Models\Passedaway;
+use App\Models\User;
+use App\Models\UserQrcode;
+use App\Rules\YouTubeLink;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class PassedawayController extends Controller
 {
     public function index()
     {
-        $Passedaway = Passedaway::with("qrcode.qrcode")->where('user_id', auth()->user()->id)->first(); // Assuming there is only one Passedaway or adjust as per your application logic
-        if($Passedaway){
-            $profile = $Passedaway->toArray();
-            $profile['birth_date'] = $Passedaway->getAttributes()['birth_date'];
-            $profile['death_date'] = $Passedaway->getAttributes()['death_date'];
-        }
-        return Inertia::render('Site/PasswayProfile', [
+        $profile = Passedaway::with("qrcode.qrcode")->where('user_id', auth()->user()->id)->first(); // Assuming there is only one Passedaway or adjust as per your application logic
+        return Inertia::render('Site/Passway/PasswayProfile', [
             'profile' => $profile ?? null
         ]);
     }
@@ -70,7 +70,7 @@ class PassedawayController extends Controller
         if(!$profile){
             return redirect()->route("passedaway.profile.bio");
         }
-        return Inertia::render('Site/PasswayMedia', [
+        return Inertia::render('Site/Passway/PasswayMedia', [
             'profile' => $profile ?? null
         ]);
     }
@@ -122,7 +122,7 @@ class PassedawayController extends Controller
             // 'summary' => 'required',
             'type' => 'required|in:video,audio,image',
             'passedaway_id' => 'required|exists:passedaways,id',
-            'video_url' => 'nullable|url',
+            'video_url' => ['nullable', new YouTubeLink()],
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -164,5 +164,54 @@ class PassedawayController extends Controller
         $media->delete();
 
         return redirect()->back()->with('success', 'Media deleted successfully.');
+    }
+
+
+    public function profile()
+    {
+        $profile = Passedaway::with("qrcode.qrcode")->where('user_id', auth()->user()->id)->first(); // Assuming there is only one Passedaway or adjust as per your application logic
+        return Inertia::render('Site/Passway/Account', [
+            'profile' => $profile ?? null
+        ]);
+    }
+
+    public function storeProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($request->user()->id),
+            ],
+            'password' => 'nullable|confirmed|min:8', // Add password confirmation and make it nullable
+        ]);
+
+        // Get all data except password if it's not set
+        $data = $request->except(['password', 'password_confirmation']);
+
+        // Update password if it exists
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->input('password'));
+        }
+
+        // Update the user's profile
+        $request->user()->update($data);
+
+        return redirect()->back()->with('success', 'Profile saved successfully');
+    }
+
+    public function qrcode()
+    {
+        $profile = Passedaway::with("qrcode.qrcode")->where('user_id', auth()->user()->id)->first(); // Assuming there is only one Passedaway or adjust as per your application logic
+        $qrcodes = UserQrcode::with('qrcode')->where('user_id', '=', auth()->user()->id)->get();
+
+        return Inertia::render('Site/Passway/QrCode', [
+            'profile' => $profile ?? null,
+            'qrcodes' => $qrcodes ?? null
+        ]);
     }
 }

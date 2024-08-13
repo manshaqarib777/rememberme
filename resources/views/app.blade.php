@@ -13,18 +13,21 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 
-        <link rel="stylesheet" href="{{asset('/')}}assets/application.css" />
-        <link rel="stylesheet" href="{{asset('/')}}assets/custom.css" />
-
         <!-- Scripts -->
         @routes
            @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
 
+
+
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia
+        <link rel="stylesheet" href="{{asset('/')}}assets/application.css" />
+        <link rel="stylesheet" href="{{asset('/')}}assets/custom.css" />
+        <link rel="stylesheet" href="{{asset('/')}}assets/grt-youtube-popup.css" />
+
     </body>
 
     <script src="{{asset('/')}}assets/application.js"></script>

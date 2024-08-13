@@ -51,8 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/qrcode_reference/{reference}', [UserQrcodeController::class, 'qrcode_reference'])->name('qrcode_reference');
     Route::post('link_qrcode', [UserQrcodeController::class, 'store'])->name('link_qrcode');
 
-
-
     Route::get('profile/bio', [PassedawayController::class, 'index'])->name('passedaway.profile.bio');
     Route::post('profile/bio/store', [PassedawayController::class, 'store'])->name('passedaway.profile.store');
 
@@ -60,9 +58,14 @@ Route::middleware('auth')->group(function () {
     Route::post('profile/media/store', [PassedawayController::class, 'storeMedia'])->name('passedaway.profile.storeMedia');
     Route::get('profile/media/{media}', [PassedawayController::class, 'getMedia'])->name('passedaway.profile.getMedia');
     Route::delete('profile/media/{media}', [PassedawayController::class, 'deleteMedia'])->name('passedaway.profile.deleteMedia');
-
     Route::post('profile/bio/upload-profile-photo', [PassedawayController::class, 'uploadProfilePhoto'])->name('passedaway.profile.upload-profile-photo');
     Route::post('profile/bio/upload-cover-photo', [PassedawayController::class, 'uploadCoverPhoto'])->name('passedaway.profile.upload-cover-photo');
+
+
+    Route::get('profile/account', [PassedawayController::class, 'profile'])->name('passedaway.profile.account');
+    Route::post('profile/account/store', [PassedawayController::class, 'storeProfile'])->name('passedaway.profile.storeProfile');
+
+    Route::get('profile/qrcode', [PassedawayController::class, 'qrcode'])->name('passedaway.profile.qrcode');
 
 
     Route::post('/profile/update', [ProfileController::class, 'update_customer_profile'])->name('customer.profile.update');

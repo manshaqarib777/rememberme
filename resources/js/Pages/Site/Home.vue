@@ -320,11 +320,13 @@
                                                             <div
                                                                 class="load-media-image-container media-tumbnail-container"
                                                             >
+                                                                <YouTubeVideo  theme="dark" :autoPlay="true" :videoLink="file.video_url" videoId="FMOJY4zP9Bo" :mediaId="file.id" v-if="file.type == 'video'" />
                                                                 <div
                                                                     class="image-on-media-tab"
                                                                     :style="{
                                                                         backgroundImage: `url(${file.file_path})`,
                                                                     }"
+                                                                    v-else
                                                                 ></div>
                                                             </div>
                                                         </div>
@@ -350,6 +352,7 @@
 import App from "./Layouts/App.vue";
 import { Head } from "@inertiajs/vue3";
 import { ref, computed } from "vue";
+import YouTubeVideo from "@/Components/YouTubeVideo.vue";
 components: {
     App, Head;
 }
