@@ -118,8 +118,8 @@ class PassedawayController extends Controller
     {
         $validatedData = $request->validate([
             'id' => 'nullable|exists:media',
-            'title' => 'required',
-            'summary' => 'required',
+            // 'title' => 'required',
+            // 'summary' => 'required',
             'type' => 'required|in:video,audio,image',
             'passedaway_id' => 'required|exists:passedaways,id',
             'video_url' => 'nullable|url',
@@ -134,8 +134,8 @@ class PassedawayController extends Controller
             $media->file_path = asset(Storage::url($imagePath));
         }
 
-        $media->title = $validatedData['title'];
-        $media->summary = $validatedData['summary'];
+        $media->title = $validatedData['title'] ?? "";
+        $media->summary = $validatedData['summary'] ?? "";
         $media->type = $validatedData['type'];
         $media->video_url = $validatedData['video_url'];
         $media->passedaway_id = $validatedData['passedaway_id'];

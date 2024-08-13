@@ -43,6 +43,7 @@
                                     <button
                                         class="btn cover-photo-button"
                                         id="edit_cover_photo_mobile"
+                                        @click="triggerFileInputCover"
                                     >
                                         <i class="bi bi-upload"></i>
                                     </button>
@@ -432,7 +433,7 @@
                                                         </div>
 
                                                     <!-- Unified Form for Image or Video -->
-                                                        <div class="mb-3">
+                                                        <!-- <div class="mb-3">
                                                             <label
                                                                 for="media-title"
                                                                 >Title:</label
@@ -461,7 +462,7 @@
                                                                 class="form-control"
                                                                 rows="3"
                                                             ></textarea>
-                                                        </div>
+                                                        </div> -->
 
                                                         <!-- Conditional Inputs -->
                                                         <div

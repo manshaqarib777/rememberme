@@ -40,6 +40,7 @@
                                     <button
                                         class="btn cover-photo-button"
                                         id="edit_cover_photo_mobile"
+                                        @click="triggerFileInputCover"
                                     >
                                         <i class="bi bi-upload"></i>
                                     </button>
