@@ -62,7 +62,7 @@ export default {
         },
         thumbnailUrl() {
             if (this.videoID) {
-                return `https://img.youtube.com/vi/${this.videoID}/hqdefault.jpg`;
+                return `https://i.ytimg.com/vi/${this.videoID}/hqdefault.jpg`;
             }
             return "";
         },
